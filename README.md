@@ -1,21 +1,25 @@
-# roblox-brainrot-01 starter
+# BRAINROT BAY
 
-A working entry for make.fun's "Make the best AI Roblox brainrot game" bounty (roblox-brainrot-01), laid out as your
-repository: a Rojo project whose game is a grey square that moves with the arrow keys. It is a starting point, not a
-winner, and not yet the 3D game the bounty asks for: its square is drawn on the screen, not in Roblox's 3D world.
+make.fun「roblox-brainrot-01」参赛项目：一个复古像素风的 3D brainrot 收集游戏（Rojo 项目）。
 
-- `main.ts` (Node 22, standard library only) hands the game in: it copies `game.rbxl`, `src/`, `screenshots/` and
-  `PLAY.json` to `/output`, leaving out every name that starts with a dot (such as `.gitkeep` or `.DS_Store`, which
-  fail an entry), and writes `/output/dossier.json` with `vendor/makefun-roblox.ts`, the kit's copy, unchanged.
-- `game.rbxl` is the place Rojo builds from `src/` and `default.project.json`; `screenshots/` holds three captures of
-  it; `PLAY.json` names no place yet, so the gate refuses the starter as it stands until it names your published one.
-- One of your screenshots must also be your game's first thumbnail on Roblox: the same picture, uploaded on the
-  Creator Dashboard with your game's icon.
-- `TOUR.json` is an example of the optional tour: for each screenshot, the keys that bring the game to that screen.
+## 玩法
 
-Run it as the grader does, writing `out/` in place of `/output`:
+- 标题画面按 **Space** 或点 PLAY 开始。
+- 在棋盘田野里找搞怪角色，靠近后 **按住 E** 抓起来扛在头上，跑回自己的基地就会自动放上底座，每秒产金币。
+- 越往海边（+X）越稀有：7 档稀有度（Common → Secret），5 种突变（Gold x2 / Diamond x3 / Lava x5 / Rainbow x10）。
+- **酱汁海啸**：每隔一段时间从海边扫向基地，在田野里被追上会被拍飞、丢掉扛着的角色；跑回基地或躲进 SAFE 避难所。
+- **鸽子小偷 Pinchy**：会来偷你基地里最值钱的角色，碰到它能抢回来；基地里的 LOCK 垫可以临时上锁挡住它。
+- 右侧按钮：SHOP（速度 / 背负数 / 底座数升级）、REBIRTH（重置换永久收入倍率）、LOCK、INDEX（图鉴）、HOME。
+- 底座上的角色按 **F** 卖出；每波海浪后随机触发 DOUBLE CASH / MUTATION STORM / LEGEND RAIN 事件。
+
+## 目录
+
+- `src/shared`：配置、经济公式、角色模型生成（共享）
+- `src/server`：世界生成、玩家数据、田野、基地、海浪、小偷、商店、事件
+- `src/client`：HUD、面板、特效、标题画面
+- `game.rbxl` 由 `rojo build default.project.json --output game.rbxl` 生成
+- `screenshots/`：4 张 Studio 截图，`1-cover.jpg` 为封面
+
+## 运行检查
 
     mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-
-The rules are on the bounty's page (/bounty/roblox-brainrot-01) and in the kit's RULES.txt,
-which gives every command in order (Before you submit, then Enter).
